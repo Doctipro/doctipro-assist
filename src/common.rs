@@ -1080,7 +1080,7 @@ fn get_api_server_(api: String, custom: String) -> String {
             return format!("http://{}", s);
         }
     }
-    "https://admin.rustdesk.com".to_owned()
+    "https://www.doctipro.be/dev3".to_owned()
 }
 
 #[inline]
@@ -2081,6 +2081,11 @@ pub fn rustdesk_interval(i: Interval) -> ThrottledInterval {
 }
 
 pub fn load_custom_client() {
+    // Doctipro Assist : audio du poste distant desactive par defaut
+    config::DEFAULT_SETTINGS
+        .write()
+        .unwrap()
+        .insert("enable-audio".to_owned(), "N".to_owned());
     #[cfg(debug_assertions)]
     if let Ok(data) = std::fs::read_to_string("./custom.txt") {
         read_custom_client(data.trim());
