@@ -1005,6 +1005,18 @@ pub fn get_app_name() -> String {
 }
 
 #[inline]
+/// Doctipro Assist : nom AFFICHE (avec espace). APP_NAME reste "DoctiproAssist"
+/// (contrainte installeur/protocole [a-zA-Z0-9-]).
+pub fn get_display_name() -> String {
+    let name = get_app_name();
+    if name == "DoctiproAssist" {
+        "Doctipro Assist".to_owned()
+    } else {
+        name
+    }
+}
+
+#[inline]
 pub fn is_rustdesk() -> bool {
     hbb_common::config::APP_NAME.read().unwrap().eq("RustDesk")
 }
@@ -2086,6 +2098,11 @@ pub fn load_custom_client() {
         .write()
         .unwrap()
         .insert("enable-audio".to_owned(), "N".to_owned());
+    // Doctipro Assist : masquer le lien "Powered by RustDesk" (exigence branding)
+    config::BUILTIN_SETTINGS
+        .write()
+        .unwrap()
+        .insert("hide-powered-by-me".to_owned(), "Y".to_owned());
     #[cfg(debug_assertions)]
     if let Ok(data) = std::fs::read_to_string("./custom.txt") {
         read_custom_client(data.trim());
