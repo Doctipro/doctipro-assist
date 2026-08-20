@@ -36,7 +36,12 @@ Contraintes techniques assumées (vérifiées dans le code) :
 
 ## 2. Ce qu'il me FAUT de Ben pour finir
 
-### a) Asset logo (bloquant pour l'icône)
+### a) Asset logo — FAIT (21/08)
+Logo officiel récupéré du site (favicon.svg, D blanc sur teal #0E9C93) et décliné par
+ImageMagick : commit 80e4b36e (res/*, app_icon.ico, tray-icon.ico, flutter/assets/icon.svg
++ icon.png + logo/logo_light/logo_dark — ajoutés en `git add -f`, .gitignore a un `*png`).
+macOS (icns) : reporté avec la décision macOS. Détail d'origine ci-dessous pour référence.
+### (référence) emplacements d'icônes
 Fournir idéalement un carré 1024×1024 PNG fond transparent + déclinaisons. Fichiers à
 remplacer (mêmes noms, mêmes emplacements) :
 - **In-app (tabbar, accueil, tray runtime)** : `flutter/assets/icon.svg` (logo vectoriel
@@ -52,9 +57,8 @@ remplacer (mêmes noms, mêmes emplacements) :
 Une fois les fichiers déposés : `git add res flutter/assets flutter/windows/runner/resources
 flutter/macos/Runner/AppIcon.icns flutter/android/app/src/main/res && git commit -m "build 2: icones Doctipro"`.
 
-### b) Décision mode borne vs médecin
-Non tranché → rien de codé. Si borne = réception seule, options candidates (BUILTIN_SETTINGS
-dans `load_custom_client()`, même mécanique que hide-powered-by-me) à valider avant patch.
+### b) Mode borne vs médecin — TRANCHÉ (Ben, 21/08)
+Client IDENTIQUE partout : toutes les fonctionnalités natives conservées, rien de bridé.
 
 ### c) Décision macOS
 Build macOS possible tel quel (non signé → Gatekeeper « clic droit > Ouvrir »).
