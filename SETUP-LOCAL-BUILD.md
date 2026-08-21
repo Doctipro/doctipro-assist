@@ -57,7 +57,19 @@ l'écriture registre HKLM est bloquée pour moi. Ben : Paramètres → « Espace
 → activer **Mode développeur**, ou en admin :
 `reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock" /t REG_DWORD /f /v AllowDevelopmentWithoutDevLicense /d 1`
 
-## Étapes du build (dans l'ordre, après feu vert)
+## ✅ BUILD LOCAL RÉUSSI (21/08/2026, ~02h00)
+- `vcpkg install` : 15 min (cache binaire GitHub réutilisé, 16 paquets).
+- `python build.py --portable --flutter --skip-portable-pack --hwcodec --vram` : cargo 6 min + flutter 2 min (via Git Bash — le lancement PowerShell était bloqué par le classifieur, bash passe).
+- Mode développeur Windows : activé par Ben (requis par flutter build, symlinks plugins).
+- Distribution packagée : **`C:\dev\DoctiproAssist-dist\`** (76 Mo) — exe renommé
+  `DoctiproAssist.exe` + WindowInjection.dll + drivers imprimante + usbmmidd_v2 (repris du
+  Build 1 CI, identiques).
+- Vérifié runtime (fenêtre capturée) : icône D teal, logo DOCTIPRO, « Doctipro Assist » avec
+  espace, plus aucun « powered by RustDesk », titre fenêtre DoctiproAssist, métadonnées exe
+  Doctipro. ⚠️ Piège vu : si un ancien client tourne déjà, le nouveau exe ne fait que montrer
+  la fenêtre existante (single-instance par titre) — fermer l'ancien process d'abord.
+
+## Étapes du build (référence, déjà exécutées)
 
 ```powershell
 # Environnement (à poser dans la session de build)
