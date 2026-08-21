@@ -8,7 +8,7 @@
 PRODUCT_NAME = DoctiproAssist
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.carriez.flutterHbb
+PRODUCT_BUNDLE_IDENTIFIER = lu.doctipro.assist
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright © 2026 Doctipro. All rights reserved.
